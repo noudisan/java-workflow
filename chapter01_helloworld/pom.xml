@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.it.cloud</groupId>
-    <artifactId>chapter01-helloworld</artifactId>
+    <artifactId>chapter01_helloworld</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>chapter01-helloworld</name>
+    <name>chapter01_helloworld</name>
 
     <description>Spring Boot - activiti - hello world</description>
 
