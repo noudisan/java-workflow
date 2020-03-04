@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <signal id="pay" name="pay" activiti:scope="global"></signal>
+  <message id="msg" name="msg"></message>
+  <process id="messageEvent" name="messageEvent" isExecutable="true">
+    <documentation>messageEvent</documentation>
+    <startEvent id="startEvent1"></startEvent>
+    <sequenceFlow id="sid-D5F258A9-0F46-4962-AD44-589CC798FDBB" sourceRef="startEvent1" targetRef="sid-73B507A7-8A99-462D-B354-A0C61337E657"></sequenceFlow>
+    <intermediateCatchEvent id="sid-73B507A7-8A99-462D-B354-A0C61337E657">
+      <messageEventDefinition messageRef="msg"></messageEventDefinition>
+    </intermediateCatchEvent>
+    <userTask id="sid-147E3B0E-76DC-4D58-8D5A-ECD25280AA8A" name="用户任务" activiti:assignee="msgUser">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-1F79F1F5-BB81-4100-8EC5-4B0C5B818B25" sourceRef="sid-73B507A7-8A99-462D-B354-A0C61337E657" targetRef="sid-147E3B0E-76DC-4D58-8D5A-ECD25280AA8A"></sequenceFlow>
+    <endEvent id="sid-AA796559-C664-475B-A525-516489EE26C0"></endEvent>
+    <sequenceFlow id="sid-2B7DA672-5026-4545-8110-A105ACD31665" sourceRef="sid-147E3B0E-76DC-4D58-8D5A-ECD25280AA8A" targetRef="sid-AA796559-C664-475B-A525-516489EE26C0"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_messageEvent">
+    <bpmndi:BPMNPlane bpmnElement="messageEvent" id="BPMNPlane_messageEvent">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="165.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-73B507A7-8A99-462D-B354-A0C61337E657" id="BPMNShape_sid-73B507A7-8A99-462D-B354-A0C61337E657">
+        <omgdc:Bounds height="30.0" width="30.0" x="300.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-147E3B0E-76DC-4D58-8D5A-ECD25280AA8A" id="BPMNShape_sid-147E3B0E-76DC-4D58-8D5A-ECD25280AA8A">
+        <omgdc:Bounds height="80.0" width="100.0" x="435.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-AA796559-C664-475B-A525-516489EE26C0" id="BPMNShape_sid-AA796559-C664-475B-A525-516489EE26C0">
+        <omgdc:Bounds height="28.0" width="28.0" x="630.0" y="151.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-D5F258A9-0F46-4962-AD44-589CC798FDBB" id="BPMNEdge_sid-D5F258A9-0F46-4962-AD44-589CC798FDBB">
+        <omgdi:waypoint x="195.0" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="300.0" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-2B7DA672-5026-4545-8110-A105ACD31665" id="BPMNEdge_sid-2B7DA672-5026-4545-8110-A105ACD31665">
+        <omgdi:waypoint x="535.0" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="630.0" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-1F79F1F5-BB81-4100-8EC5-4B0C5B818B25" id="BPMNEdge_sid-1F79F1F5-BB81-4100-8EC5-4B0C5B818B25">
+        <omgdi:waypoint x="330.0" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="435.0" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

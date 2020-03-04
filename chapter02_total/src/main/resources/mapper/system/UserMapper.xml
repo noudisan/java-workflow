@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.cloud.modules.auth.mapper.UserMapper">
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, USERNAME, PASSWORD, SALT, SEX, AGE, EMAIL, MOBILE, STATUS, CREATE_USER, CREATE_TIME, UPDATE_USER, UPDATE_TIME, DELETE_STATUS
+    </sql>
+
+    <!-- 查询用户的所有权限 -->
+    <select id="queryAllPerms" resultType="string">
+		select m.perms from it_user_role ur
+			LEFT JOIN it_role_menu rm on ur.role_id = rm.role_id
+			LEFT JOIN it_menu m on rm.menu_id = m.menu_id
+		where ur.user_id = #{userId}
+	</select>
+
+    <!-- 查询用户的所有菜单ID -->
+    <select id="queryAllMenuId" resultType="string">
+		select distinct rm.menu_id from it_user_role ur
+			LEFT JOIN it_role_menu rm on ur.role_id = rm.role_id
+		where ur.user_id = #{userId}
+	</select>
+
+</mapper>

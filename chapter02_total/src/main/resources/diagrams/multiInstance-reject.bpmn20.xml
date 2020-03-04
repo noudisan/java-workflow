@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="multiInstance-reject" name="多实例一票否决测试" isExecutable="true">
+    <startEvent id="startEvent1"></startEvent>
+    <userTask id="task1" name="发起会议" activiti:assignee="admin">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-AB72BCEE-4568-4240-A4A8-23A79506CAC1" sourceRef="startEvent1" targetRef="task1"></sequenceFlow>
+    <userTask id="task2" name="会议签到" activiti:assignee="${user}">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="users" activiti:elementVariable="user">
+        <completionCondition>${nrOfCompletedInstances/nrOfInstances &gt;= 0.5 || flag==false}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <sequenceFlow id="sid-98BE643F-B247-46B2-94BA-EA9E06EBD9AC" sourceRef="task1" targetRef="task2"></sequenceFlow>
+    <endEvent id="sid-EA4EA283-C5CF-43C5-8401-E0BF40132529"></endEvent>
+    <sequenceFlow id="sid-BFD094C8-66EC-4ED2-8A35-0100E0B4E8B2" sourceRef="task2" targetRef="sid-EA4EA283-C5CF-43C5-8401-E0BF40132529"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_multiInstance-reject">
+    <bpmndi:BPMNPlane bpmnElement="multiInstance-reject" id="BPMNPlane_multiInstance-reject">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="210.0" y="195.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="task1" id="BPMNShape_task1">
+        <omgdc:Bounds height="80.0" width="100.0" x="375.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="task2" id="BPMNShape_task2">
+        <omgdc:Bounds height="80.0" width="100.0" x="600.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-EA4EA283-C5CF-43C5-8401-E0BF40132529" id="BPMNShape_sid-EA4EA283-C5CF-43C5-8401-E0BF40132529">
+        <omgdc:Bounds height="28.0" width="28.0" x="795.0" y="196.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-AB72BCEE-4568-4240-A4A8-23A79506CAC1" id="BPMNEdge_sid-AB72BCEE-4568-4240-A4A8-23A79506CAC1">
+        <omgdi:waypoint x="240.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="375.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-98BE643F-B247-46B2-94BA-EA9E06EBD9AC" id="BPMNEdge_sid-98BE643F-B247-46B2-94BA-EA9E06EBD9AC">
+        <omgdi:waypoint x="475.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="600.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-BFD094C8-66EC-4ED2-8A35-0100E0B4E8B2" id="BPMNEdge_sid-BFD094C8-66EC-4ED2-8A35-0100E0B4E8B2">
+        <omgdi:waypoint x="700.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="795.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

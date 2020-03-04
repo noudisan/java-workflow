@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="scriptTask" name="scriptTask" isExecutable="true">
+    <documentation>scriptTask</documentation>
+    <startEvent id="startEvent1"></startEvent>
+    <scriptTask id="sid-CF08BBA7-509F-4246-B4BC-939236D90185" name="javascript任务" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script><![CDATA[var myVar = "sima";
+execution.setVariable("user",  myVar);
+for(var i=0; i<10; i++){
+print(i)
+}]]></script>
+    </scriptTask>
+    <sequenceFlow id="sid-EB8225D9-E9B8-4E6D-ADDB-59BFDA5F3DCB" sourceRef="startEvent1" targetRef="sid-CF08BBA7-509F-4246-B4BC-939236D90185"></sequenceFlow>
+    <scriptTask id="sid-07E57300-6B1F-47E3-ACFD-5210B7CA4847" name="juel脚本" scriptFormat="juel" activiti:autoStoreVariables="false">
+      <script><![CDATA[${myBean.print(execution)}]]></script>
+    </scriptTask>
+    <sequenceFlow id="sid-A920AD82-A34C-4EBD-9943-8BFB9BC41B5C" sourceRef="sid-CF08BBA7-509F-4246-B4BC-939236D90185" targetRef="sid-07E57300-6B1F-47E3-ACFD-5210B7CA4847"></sequenceFlow>
+    <endEvent id="sid-F670C82B-26AA-4DA3-9692-CCAFA6ECE1C4"></endEvent>
+    <sequenceFlow id="sid-6DF92EFE-7A7E-48B9-9EC4-60D00DDDCE08" sourceRef="sid-07E57300-6B1F-47E3-ACFD-5210B7CA4847" targetRef="sid-F670C82B-26AA-4DA3-9692-CCAFA6ECE1C4"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_scriptTask">
+    <bpmndi:BPMNPlane bpmnElement="scriptTask" id="BPMNPlane_scriptTask">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="135.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-CF08BBA7-509F-4246-B4BC-939236D90185" id="BPMNShape_sid-CF08BBA7-509F-4246-B4BC-939236D90185">
+        <omgdc:Bounds height="80.0" width="100.0" x="270.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-07E57300-6B1F-47E3-ACFD-5210B7CA4847" id="BPMNShape_sid-07E57300-6B1F-47E3-ACFD-5210B7CA4847">
+        <omgdc:Bounds height="80.0" width="100.0" x="480.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-F670C82B-26AA-4DA3-9692-CCAFA6ECE1C4" id="BPMNShape_sid-F670C82B-26AA-4DA3-9692-CCAFA6ECE1C4">
+        <omgdc:Bounds height="28.0" width="28.0" x="675.0" y="166.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-A920AD82-A34C-4EBD-9943-8BFB9BC41B5C" id="BPMNEdge_sid-A920AD82-A34C-4EBD-9943-8BFB9BC41B5C">
+        <omgdi:waypoint x="370.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-6DF92EFE-7A7E-48B9-9EC4-60D00DDDCE08" id="BPMNEdge_sid-6DF92EFE-7A7E-48B9-9EC4-60D00DDDCE08">
+        <omgdi:waypoint x="580.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="675.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-EB8225D9-E9B8-4E6D-ADDB-59BFDA5F3DCB" id="BPMNEdge_sid-EB8225D9-E9B8-4E6D-ADDB-59BFDA5F3DCB">
+        <omgdi:waypoint x="165.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="270.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

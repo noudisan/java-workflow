@@ -13,17 +13,15 @@
 
     <modules>
         <module>chapter01_helloworld</module>
-        <module>chapter02_spring</module>
+        <module>chapter02_total</module>
     </modules>
 
     <properties>
         <file_encoding>UTF-8</file_encoding>
         <project.build.sourceEncoding>${file_encoding}</project.build.sourceEncoding>
-
         <java_source_version>1.8</java_source_version>
         <java_target_version>1.8</java_target_version>
        
-
     </properties>
 
     <dependencyManagement>

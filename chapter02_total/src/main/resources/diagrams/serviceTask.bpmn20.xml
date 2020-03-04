@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="serviceTask" name="服务任务测试" isExecutable="true">
+    <startEvent id="startEvent1"></startEvent>
+    <serviceTask id="task1" name="服务任务节点" activiti:class="com.it.cloud.activiti.task.delegate.Mydelegate"></serviceTask>
+    <endEvent id="sid-493A4035-6A03-427E-B1A6-51E1AB1AEE20"></endEvent>
+    <sequenceFlow id="sid-AB72BCEE-4568-4240-A4A8-23A79506CAC1" sourceRef="startEvent1" targetRef="task1"></sequenceFlow>
+    <sequenceFlow id="sid-631A7EB8-389C-4662-B0D0-D1E8D05676E5" sourceRef="task1" targetRef="sid-493A4035-6A03-427E-B1A6-51E1AB1AEE20"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_serviceTask">
+    <bpmndi:BPMNPlane bpmnElement="serviceTask" id="BPMNPlane_serviceTask">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="210.0" y="195.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="task1" id="BPMNShape_task1">
+        <omgdc:Bounds height="80.0" width="100.0" x="390.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-493A4035-6A03-427E-B1A6-51E1AB1AEE20" id="BPMNShape_sid-493A4035-6A03-427E-B1A6-51E1AB1AEE20">
+        <omgdc:Bounds height="28.0" width="28.0" x="630.0" y="196.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-631A7EB8-389C-4662-B0D0-D1E8D05676E5" id="BPMNEdge_sid-631A7EB8-389C-4662-B0D0-D1E8D05676E5">
+        <omgdi:waypoint x="490.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="630.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-AB72BCEE-4568-4240-A4A8-23A79506CAC1" id="BPMNEdge_sid-AB72BCEE-4568-4240-A4A8-23A79506CAC1">
+        <omgdi:waypoint x="240.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="assignUser" name="个人任务分配" isExecutable="true">
+    <startEvent id="startEvent1"></startEvent>
+    <userTask id="userTask1" name="指定用户" activiti:assignee="admin">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-EC85E74C-7AB4-42EA-BFED-1FD829AF299D" sourceRef="startEvent1" targetRef="userTask1"></sequenceFlow>
+    <endEvent id="sid-A8829272-31FB-48E0-81CE-CDB2D74192C1"></endEvent>
+    <userTask id="userTask2" name="变量" activiti:assignee="${user}">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-B7C8E9BD-7131-4D64-894B-DD7A12687ABB" sourceRef="userTask1" targetRef="userTask2"></sequenceFlow>
+    <userTask id="userTask3" name="监听器">
+      <extensionElements>
+        <activiti:taskListener event="create" class="com.it.cloud.activiti.assignuser.UserTaskListener"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-E7BBDF7E-0EC9-4167-8E9C-56A35C5A22FE" sourceRef="userTask2" targetRef="userTask3"></sequenceFlow>
+    <sequenceFlow id="sid-CE341AD8-C034-41A7-8378-9011B395B1C5" sourceRef="userTask3" targetRef="sid-A8829272-31FB-48E0-81CE-CDB2D74192C1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_assignUser">
+    <bpmndi:BPMNPlane bpmnElement="assignUser" id="BPMNPlane_assignUser">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="75.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userTask1" id="BPMNShape_userTask1">
+        <omgdc:Bounds height="80.0" width="100.0" x="240.0" y="155.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-A8829272-31FB-48E0-81CE-CDB2D74192C1" id="BPMNShape_sid-A8829272-31FB-48E0-81CE-CDB2D74192C1">
+        <omgdc:Bounds height="28.0" width="28.0" x="900.0" y="181.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userTask2" id="BPMNShape_userTask2">
+        <omgdc:Bounds height="80.0" width="100.0" x="465.0" y="155.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userTask3" id="BPMNShape_userTask3">
+        <omgdc:Bounds height="80.0" width="100.0" x="690.0" y="155.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-B7C8E9BD-7131-4D64-894B-DD7A12687ABB" id="BPMNEdge_sid-B7C8E9BD-7131-4D64-894B-DD7A12687ABB">
+        <omgdi:waypoint x="340.0" y="195.0"></omgdi:waypoint>
+        <omgdi:waypoint x="465.0" y="195.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-EC85E74C-7AB4-42EA-BFED-1FD829AF299D" id="BPMNEdge_sid-EC85E74C-7AB4-42EA-BFED-1FD829AF299D">
+        <omgdi:waypoint x="105.0" y="195.0"></omgdi:waypoint>
+        <omgdi:waypoint x="240.0" y="195.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E7BBDF7E-0EC9-4167-8E9C-56A35C5A22FE" id="BPMNEdge_sid-E7BBDF7E-0EC9-4167-8E9C-56A35C5A22FE">
+        <omgdi:waypoint x="565.0" y="195.0"></omgdi:waypoint>
+        <omgdi:waypoint x="690.0" y="195.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-CE341AD8-C034-41A7-8378-9011B395B1C5" id="BPMNEdge_sid-CE341AD8-C034-41A7-8378-9011B395B1C5">
+        <omgdi:waypoint x="790.0" y="195.0"></omgdi:waypoint>
+        <omgdi:waypoint x="900.0" y="195.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
