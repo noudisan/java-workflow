@@ -4,16 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ztt</groupId>
-    <artifactId>java-algorithm</artifactId>
+    <artifactId>java-workflow</artifactId>
     <version>1.0</version>
 
     <packaging>pom</packaging>
-    <name>java-algorithm</name>
+    <name>java-workflow</name>
     <description>架构集合平台</description>
 
     <modules>
-        <module>chapter01_basic</module>
-        <module>chapter02_algs4</module>
+        <module>chapter01_helloworld</module>
+        <module>chapter02_spring</module>
     </modules>
 
     <properties>
