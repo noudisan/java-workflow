@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/processdef" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1575388742426" name="" targetNamespace="http://www.activiti.org/processdef" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="helloworld" isClosed="false" isExecutable="true" name="helloworld" processType="None">
+    <startEvent id="startEvent1"/>
+    <userTask activiti:assignee="admin" activiti:exclusive="true" id="userTask1" name="用户节点">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-EC85E74C-7AB4-42EA-BFED-1FD829AF299D" sourceRef="startEvent1" targetRef="userTask1"/>
+    <endEvent id="sid-A8829272-31FB-48E0-81CE-CDB2D74192C1"/>
+    <sequenceFlow id="sid-128AE139-627A-4280-9C20-690E05717C8E" sourceRef="userTask1" targetRef="sid-A8829272-31FB-48E0-81CE-CDB2D74192C1"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#FFFFFF;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="helloworld">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="Shape-startEvent1">
+        <omgdc:Bounds height="32.0" width="32.0" x="375.0" y="30.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userTask1" id="Shape-userTask1">
+        <omgdc:Bounds height="80.0" width="100.0" x="340.0" y="135.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-A8829272-31FB-48E0-81CE-CDB2D74192C1" id="Shape-sid-A8829272-31FB-48E0-81CE-CDB2D74192C1">
+        <omgdc:Bounds height="32.0" width="32.0" x="376.0" y="300.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-128AE139-627A-4280-9C20-690E05717C8E" id="BPMNEdge_sid-128AE139-627A-4280-9C20-690E05717C8E" sourceElement="userTask1" targetElement="sid-A8829272-31FB-48E0-81CE-CDB2D74192C1">
+        <omgdi:waypoint x="392.0" y="215.0"/>
+        <omgdi:waypoint x="392.0" y="300.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-EC85E74C-7AB4-42EA-BFED-1FD829AF299D" id="BPMNEdge_sid-EC85E74C-7AB4-42EA-BFED-1FD829AF299D" sourceElement="startEvent1" targetElement="userTask1">
+        <omgdi:waypoint x="391.0" y="62.0"/>
+        <omgdi:waypoint x="391.0" y="135.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

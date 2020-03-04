@@ -8,10 +8,12 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.it.cloud</groupId>
-    <artifactId>activiti6-helloworld</artifactId>
+    <artifactId>charper01-helloworld</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>activiti6-helloworld</name>
+    <name>charper01-helloworld</name>
+
     <description>Spring Boot - activiti - hello world</description>
 
     <properties>
