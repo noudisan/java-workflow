@@ -44,8 +44,8 @@ public class HelloWorldProcessTest {
 
     }
 
+    @Test
     public void start(){
-
         //启动流程实例 start
         ProcessInstance pi = runtimeService.startProcessInstanceByKey("helloworld"); // 流程定义表的KEY字段值
         System.out.println("流程实例ID:" + pi.getId());

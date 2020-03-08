@@ -36,7 +36,7 @@ spring:
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
 
-# activiti配置
+  # activiti配置
   activiti:
     database-schema-update: true
     # 记录级别,默认audit
