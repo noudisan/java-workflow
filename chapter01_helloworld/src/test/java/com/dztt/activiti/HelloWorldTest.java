@@ -1,4 +1,4 @@
-package com.ztt.activiti;
+package com.dztt.activiti;
 
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -18,7 +18,6 @@ import java.util.List;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class HelloWorldTest {
 
-
     @Autowired
     private RuntimeService runtimeService;
 
@@ -27,7 +26,6 @@ public class HelloWorldTest {
 
     @Autowired
     private TaskService taskService;
-
 
     /**
      * 部署流程定义
@@ -50,6 +48,8 @@ public class HelloWorldTest {
         ProcessInstance pi = runtimeService.startProcessInstanceByKey("helloworld"); // 流程定义表的KEY字段值
         System.out.println("流程实例ID:" + pi.getId());
         System.out.println("流程定义ID:" + pi.getProcessDefinitionId());
+        /*流程实例ID:5001
+        流程定义ID:helloworld:1:2504*/
 
         //查看任务 queryTask
         List<Task> taskList = taskService.createTaskQuery() // 创建任务查询
@@ -61,6 +61,14 @@ public class HelloWorldTest {
             System.out.println("任务创建时间:" + task.getCreateTime());
             System.out.println("任务委派人:" + task.getAssignee());
             System.out.println("流程实例ID:" + task.getProcessInstanceId());
+
+            /*
+            任务ID:5005
+            任务名称:用户节点
+            任务创建时间:Fri Jun 19 00:11:18 CST 2020
+            任务委派人:admin
+            流程实例ID:5001*/
+
 
             //完成任务 completeTask
             taskService.complete(task.getId());

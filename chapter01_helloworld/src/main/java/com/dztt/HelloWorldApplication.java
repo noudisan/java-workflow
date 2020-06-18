@@ -1,4 +1,4 @@
-package com.ztt;
+package com.dztt;
 
 import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +10,6 @@ public class HelloWorldApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(HelloWorldApplication.class, args);
-
     }
-
 
 }

@@ -1,7 +1,7 @@
-package com.ztt.activiti.mapper;
+package com.dztt.activiti.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ztt.activiti.entity.ActIdUser;
+import com.dztt.activiti.entity.ActIdUser;
 
 
 public interface ActIdUserMapper extends BaseMapper<ActIdUser> {

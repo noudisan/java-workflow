@@ -1,4 +1,4 @@
-package com.ztt.config.mybatisplus;
+package com.dztt.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@MapperScan("com.ztt.activiti.mapper")
+@MapperScan("com.dztt.activiti.mapper")
 public class MybatisPlusConfig {
 
     /**
@@ -15,6 +15,7 @@ public class MybatisPlusConfig {
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
+
         return new PaginationInterceptor();
     }
 

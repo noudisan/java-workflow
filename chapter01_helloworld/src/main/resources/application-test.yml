@@ -7,9 +7,6 @@ spring:
     password: root
 
 logging:
-  config: classpath:rename-logback.xml
+  config: classpath:logback.xml
   path: ~/Download/log
-  #打印sql
-  level:
-    com.it.cloud.modules: debug
 
