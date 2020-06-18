@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--dataSoucre-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="jdbc:h2:mem:activiti"/>
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+
+        <property name="filters" value="stat,slf4j"/>
+    </bean>
+
+    <!--事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--以druid数据源连接-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--修改为SpringProcessEngineConfiguration-->
+    <bean id="processEngineConfiguration"
+          class="org.activiti.spring.SpringProcessEngineConfiguration">
+
+        <!--需要单独创建一个数据库、spring需要对事务进行控制-->
+        <!--以druid数据源连接-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--事务管理器-->
+        <property name="transactionManager" ref="transactionManager"/>
+
+        <property name="databaseSchemaUpdate" value="true"/>
+    </bean>
+
+
+    <!--流程引擎对象-->
+    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+        <property name="processEngineConfiguration" ref="processEngineConfiguration"/>
+    </bean>
+
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService"/>
+    <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
+    <bean id="formService" factory-bean="processEngine" factory-method="getFormService"/>
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/>
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"/>
+
+    <bean id="activitiRule" class="org.activiti.engine.test.ActivitiRule">
+        <property name="processEngine" ref="processEngine"/>
+    </bean>
+
+    <bean id="helloBean" class="com.imooc.activiti.activitidemo.delegage.HelloBean"/>
+
+</beans>

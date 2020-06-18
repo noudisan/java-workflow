@@ -1,5 +1,6 @@
 package org.flowable;
 
+import org.flowable.common.engine.api.management.TablePage;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricActivityInstance;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HolidayRequest {
+public class HolidayRequestTwo {
 
     public static void main(String[] args) {
         /*ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
@@ -34,10 +35,12 @@ public class HolidayRequest {
         //流程引擎会将XML文件存储在数据库中，这样可以在需要的时候获取它。
         //流程定义转换为内部的、可执行的对象模型，这样使用它就可以启动流程实例。
         RepositoryService repositoryService = processEngine.getRepositoryService();
-        Deployment deployment = repositoryService.createDeployment()
+       /* Deployment deployment = repositoryService.createDeployment()
                 .addClasspathResource("holiday-request.bpmn20.xml")
-                .deploy();
+                .deploy();*/
 
+        List<Deployment> list = repositoryService.createDeploymentQuery().list();
+        Deployment deployment = list.get(0);
 
         //我们现在可以通过API查询验证流程定义已经部署在引擎中（并学习一些API）。
         // 通过RepositoryService创建的ProcessDefinitionQuery对象实现。
@@ -45,6 +48,11 @@ public class HolidayRequest {
                 .deploymentId(deployment.getId())
                 .singleResult();
         System.out.println("Found process definition : " + processDefinition.getName());
+
+        ManagementService manager = processEngine.getManagementService();
+        TablePage page = manager.createTablePageQuery().tableName("ACT_GE_PROPERTY").listPage(0, 10);
+        List<Map<String, Object>> row = page.getRows();
+
 
         //启动流程实例
         RuntimeService runtimeService = processEngine.getRuntimeService();

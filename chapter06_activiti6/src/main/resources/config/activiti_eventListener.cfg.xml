@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration"
+          id="processEngineConfiguration">
+        <!--<property name="commandInvoker" ref="mdcCommandInvoker"/>-->
+
+        <!--eventListeners-->
+        <property name="eventListeners">
+            <list>
+                <!--<bean class="com.imooc.activiti.activitidemo.event.ProcessEventListener"></bean>-->
+                <!--<bean class="com.imooc.activiti.activitidemo.event.CustomEventListener"></bean>-->
+            </list>
+        </property>
+
+        <!--typedEventListeners-->
+        <!--<property name="typedEventListeners">-->
+            <!--<map>-->
+                <!--<entry key="PROCESS_STARTED">-->
+                    <!--<list>-->
+                        <!--<bean class="com.imooc.activiti.activitidemo.event.ProcessEventListener"></bean>-->
+                    <!--</list>-->
+                <!--</entry>-->
+            <!--</map>-->
+        <!--</property>-->
+    </bean>
+
+
+    <bean class="com.imooc.activiti.activitidemo.interceptor.MDCCommandInvoker" id="mdcCommandInvoker"/>
+
+</beans>

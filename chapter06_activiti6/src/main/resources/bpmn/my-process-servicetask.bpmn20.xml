@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.activiti.org/processdef">
+    <process id="my-process" name="用户任务测试" isExecutable="true">
+        <documentation>usertask test</documentation>
+
+        <startEvent id="startEvent" name="开始"/>
+
+        <sequenceFlow id="sid-905AF026-9221-4C80-AF9A-29C581E59503" sourceRef="startEvent" targetRef="someTask"/>
+
+        <serviceTask id="someTask" name="主管审批" activiti:class="com.imooc.activiti.activitidemo.example.MyJavaDelegate">
+        </serviceTask>
+
+        <sequenceFlow id="sid-905AF026-9221-4C80-AF9A-29C581E59505" sourceRef="someTask"
+                      targetRef="endEventCancel"/>
+
+        <endEvent id="endEventCancel" name="取消"/>
+    </process>
+</definitions>

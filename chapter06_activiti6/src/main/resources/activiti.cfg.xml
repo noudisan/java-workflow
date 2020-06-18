@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--基于内存的独立的流程引擎配置-->
+    <bean id="processEngineConfiguration"
+          class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+        <property name="jdbcUrl" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000;MVCC=TRUE" />
+        <property name="jdbcDriver" value="org.h2.Driver" />
+        <property name="jdbcUsername" value="sa" />
+        <property name="jdbcPassword" value="" />
+
+        <!--mysql连接-->
+        <!--<property name="jdbcUrl"-->
+                  <!--value="jdbc:mysql://10.10.1.17:3306/activiti6?useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8"/>-->
+        <!--<property name="jdbcDriver" value="com.mysql.cj.jdbc.Driver"/>-->
+        <!--<property name="jdbcUsername" value="root001"/>-->
+        <!--<property name="jdbcPassword" value="Mysql_2019"/>-->
+        <!--启动时自动检查并更新数据库表，不存在会创建 （一般 dev开发项目 使用）-->
+        <property name="databaseSchemaUpdate" value="true"/>
+    </bean>
+
+</beans>

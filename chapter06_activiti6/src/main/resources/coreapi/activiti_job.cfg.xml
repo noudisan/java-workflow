@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration"
+          id="processEngineConfiguration">
+        <property name="commandInvoker" ref="mdcCommandInvoker"/>
+
+        <!--打开异步任务job-->
+        <property name="asyncExecutorActivate" value="true"></property>
+
+        <property name="asyncExecutor" ref="asyncExecutor"></property>
+
+        <!--配置timer和job事件监听-->
+        <property name="eventListeners">
+            <list>
+                <bean class="com.imooc.activiti.activitidemo.event.JobEventListener"></bean>
+            </list>
+        </property>
+
+        <!--将map注册进来-->
+        <property name="customMybatisMappers">
+            <set>
+                <value>com.imooc.activiti.activitidemo.mapper.MyCustomMapper</value>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="asyncExecutor" class="org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor">
+        <property name="executorService" ref="executorService"></property>
+    </bean>
+
+    <bean id="executorService" class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean">
+        <property name="threadNamePrefix" value="activiti-job-"></property>
+        <property name="corePoolSize" value="5"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="queueCapacity" value="100"/>
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor$AbortPolicy"></bean>
+        </property>
+    </bean>
+
+    <bean class="com.imooc.activiti.activitidemo.interceptor.MDCCommandInvoker" id="mdcCommandInvoker"/>
+
+</beans>

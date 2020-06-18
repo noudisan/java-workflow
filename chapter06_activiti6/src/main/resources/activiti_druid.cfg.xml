@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--基于内存的独立的流程引擎配置-->
+    <bean id="processEngineConfiguration"
+          class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+        <!--<property name="jdbcUrl" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000;MVCC=TRUE" />-->
+        <!--<property name="jdbcDriver" value="org.h2.Driver" />-->
+        <!--<property name="jdbcUsername" value="sa" />-->
+        <!--<property name="jdbcPassword" value="" />-->
+
+        <!--mysql连接-->
+        <!--<property name="jdbcUrl"-->
+        <!--value="jdbc:mysql://10.10.1.17:3306/activiti6?useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8"/>-->
+        <!--<property name="jdbcDriver" value="com.mysql.cj.jdbc.Driver"/>-->
+        <!--<property name="jdbcUsername" value="root001"/>-->
+        <!--<property name="jdbcPassword" value="Mysql_2019"/>-->
+        <!--启动时自动检查并更新数据库表，不存在会创建 （一般 dev开发项目 使用）-->
+        <property name="databaseSchemaUpdate" value="true"/>
+
+        <!--以druid数据源连接-->
+        <property name="dataSource" ref="dataSource"/>
+
+        <!--是否使用历史数据 默认 true-->
+        <property name="dbHistoryUsed" value="true"></property>
+
+        <!--是否使用身份数据 默认 true 如果需要跟自身应用的用户集成，可设置成flase-->
+        <property name="dbIdentityUsed" value="true"></property>
+
+        <!--表的自动前缀-->
+        <!--<property name="databaseTablePrefix"  value="t_"/>-->
+
+        <!--数据库类型、可以不用配置，代码会根据连接自动识别-->
+        <!--<property name="databaseType" value="mysql"/>-->
+
+    </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url"
+                  value="jdbc:mysql://10.10.1.17:3306/activiti6?useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="username" value="root001"/>
+        <property name="password" value="Mysql_2019"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="10"/>
+
+        <property name="filters" value="stat,slf4j"/>
+    </bean>
+
+</beans>

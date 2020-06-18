@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration"
+          id="processEngineConfiguration">
+
+        <property name="jdbcUrl" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000;MVCC=TRUE" />
+        <property name="jdbcDriver" value="org.h2.Driver" />
+        <property name="jdbcUsername" value="sa" />
+        <property name="jdbcPassword" value="" />
+        <!--history配置 默认audit-->
+        <!--<property name="history" value="none" />-->
+        <!--<property name="history" value="activity"/>-->
+        <!--<property name="history" value="audit" />-->
+        <!--设置成full,方便看整个流程-->
+        <property name="history" value="full" />
+
+
+        <property name="databaseSchemaUpdate" value="create-drop"/>
+
+        <!--mdc拦截-->
+        <property name="commandInvoker" ref="mdcCommandInvoker"/>
+
+        <!--eventLog配置-->
+        <property name="enableDatabaseEventLogging" value="true"/>
+
+    </bean>
+
+
+    <bean class="com.imooc.activiti.activitidemo.interceptor.MDCCommandInvoker" id="mdcCommandInvoker"/>
+
+</beans>

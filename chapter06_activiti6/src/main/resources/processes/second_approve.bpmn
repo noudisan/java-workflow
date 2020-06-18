@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test"
+             id="m1528728906382" name="">
+    <process id="second_approve" name="二级审批流程" isExecutable="true" isClosed="false" processType="None">
+        <startEvent id="startEvent" name="开始"></startEvent>
+        <userTask id="submitForm" name="填写审批信息">
+            <extensionElements>
+                <activiti:formProperty id="message" name="申请信息" type="string" required="true"></activiti:formProperty>
+                <activiti:formProperty id="name" name="申请人姓名" type="string" required="true"></activiti:formProperty>
+                <activiti:formProperty id="submitTime" name="提交时间" type="date" datePattern="yyyy-MM-dd"
+                                       required="true"></activiti:formProperty>
+                <activiti:formProperty id="submitType" name="确认申请" type="string"
+                                       required="true"></activiti:formProperty>
+            </extensionElements>
+        </userTask>
+        <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="submitForm"></sequenceFlow>
+        <exclusiveGateway id="decideSubmit" name="提交OR取消"></exclusiveGateway>
+        <sequenceFlow id="flow2" sourceRef="submitForm" targetRef="decideSubmit"></sequenceFlow>
+        <userTask id="tl_approve" name="主管审批">
+            <extensionElements>
+                <activiti:formProperty id="tlApprove" name="主管审批结果" type="string"></activiti:formProperty>
+                <activiti:formProperty id="tlMessage" name="主管备注" type="string" required="true"></activiti:formProperty>
+            </extensionElements>
+        </userTask>
+        <sequenceFlow id="flow3" sourceRef="decideSubmit" targetRef="tl_approve">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${submitType == "y" || submitType == "Y"}]]></conditionExpression>
+        </sequenceFlow>
+        <exclusiveGateway id="decideTLApprove" name="主管审批校验"></exclusiveGateway>
+        <sequenceFlow id="flow4" sourceRef="tl_approve" targetRef="decideTLApprove"></sequenceFlow>
+        <endEvent id="endEvent" name="结束"></endEvent>
+        <endEvent id="endEventCancel" name="取消"></endEvent>
+        <sequenceFlow id="flow8" sourceRef="decideSubmit" targetRef="endEventCancel">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${submitType == "n" || submitType == "N"}]]></conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow9" sourceRef="decideTLApprove" targetRef="submitForm">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${tlApprove == "n" || tlApprove == "N"}]]></conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="_2" sourceRef="decideTLApprove" targetRef="endEvent">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${tlApprove == "y" || tlApprove == "Y"}]]></conditionExpression>
+        </sequenceFlow>
+    </process>
+</definitions>

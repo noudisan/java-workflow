@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--基于内存的独立的流程引擎配置-->
+    <bean id="processEngineConfiguration"
+          class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+
+        <!--以druid数据源连接-->
+        <property name="dataSource" ref="dataSource"/>
+
+        <!--启动时自动检查并更新数据库表，不存在会创建 （一般 dev开发项目 使用）-->
+        <property name="databaseSchemaUpdate" value="true"/>
+
+        <!--是否使用historyUsed数据表、默认是true-->
+        <!--<property name="dbHistoryUsed" value="false"></property>-->
+        <!--是否使用Identity数据表、默认是true-->
+        <!--<property name="dbIdentityUsed" value="false"></property>-->
+
+        <!--开启历史记录等级full-->
+        <property name="historyLevel" value="FULL"></property>
+        <!--开启日志-->
+        <property name="enableDatabaseEventLogging" value="true"/>
+    </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url"
+                  value="jdbc:mysql://10.10.1.17:3306/activiti6?useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="username" value="root001"/>
+        <property name="password" value="Mysql_2019"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="20"/>
+
+        <property name="filters" value="stat,slf4j"/>
+    </bean>
+
+</beans>
