@@ -28,7 +28,7 @@
         <shiro.version>1.4.2</shiro.version>
         <jwt.version>0.7.0</jwt.version>
         <kaptcha.version>0.0.9</kaptcha.version>
-        <quartz.version>2.3.0</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <activiti.version>6.0.0</activiti.version>
         <batik.version>1.7</batik.version>
     </properties>
